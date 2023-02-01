@@ -1,0 +1,17 @@
+<p>{{first_name }}</p>
+<p>{{ stuff|safe }}</p>
+<p>{{ seke | title }}</p>
+<h3>favorite Pizza:</h3>
+
+{% for topping in favorite_pizza %}
+    {% if topping == 41 %}
+    {{topping + 100}} <br/>
+    {% else %}
+    {{ topping}} <br/>
+    {% endif %}
+
+
+{% endfor %}
+
+<br/>
+{{ favorite_pizza.0 | title}}
