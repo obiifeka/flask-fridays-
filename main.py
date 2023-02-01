@@ -15,7 +15,7 @@ def index():
     return render_template("index.html",first_name=first_name,
    stuff=stuff,seke=seke, favorite_pizza=favorite_pizza)
 
-# Create Custom Error Pages
+# Create Custom Error Pages.
 @app.errorhandler(404)
 def page_not_found():
     return render_template("404.html"),404
