@@ -1,6 +1,17 @@
   <div>
  {% extends 'base.html' %}
     {% block content %}
+    {% for message in get_flashed_messages()  %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+ <p>Hey, {{ message }}</p>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+    {% endfor %}
 
   <p>{{first_name }}</p>
   <p>{{ stuff|safe }}</p>
