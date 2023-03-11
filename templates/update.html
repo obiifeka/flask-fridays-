@@ -1,0 +1,70 @@
+{% extends 'base.html' %} {% block content %}
+
+{% for message in
+get_flashed_messages() %}
+
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <p>Hey <strong>{{ name_to_update.name }},</strong> {{ message }}</p>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+
+{% endfor %}
+
+<div class="container-fluid">
+  <!--<h1>What's Your Name</h1>-->
+{% if name %}
+<h1>  Update user!</h1>
+<br />
+<div class="shadow p-3 mb-5 bg-body rounded">
+ {% for our_user in our_users %}
+  {{ our_user.id }}  - <a>{{ our_user.name }}</a>  -
+   {{ our_user.email }} -
+   {{ our_user.favorite }}  -
+     PW: {{our_user.password_hash}}<br/><br/>
+  {% endfor %}
+</div>
+
+{% else %}
+<div class="card">
+  <div class="card-body">
+<h1 class="text-center"> Update User:</h1>
+
+  <form action="/update/{{ name_to_update.id }}" method="POST">
+    
+      {{ form.hidden_tag() }} 
+      {{ form.name.label (class="form-label")}} {{
+      form.name(class="form-control", value=name_to_update.name) }}
+      <br />
+      {{ form.email.label (class="form-label")}} {{
+      form.email(class="form-control", value=name_to_update.email) }}
+        <br />
+          {{ form.favorite_color.label (class="form-label")  }} {{
+      form.favorite_color(class="form-control", value=name_to_update.favorite_color) }} 
+      <br />
+         
+      {{ form.password_hash.label (class="form-label") }} {{
+      form.password_hash(class="form-control",value=password_hash) }}
+       <br/>
+      {{ form.password_hash2.label (class="form-label") }} {{
+      form.password_hash2(class="form-control",value=password_hash2) }}
+       <br/>
+     
+      {{ form.submit(class="btn btn-secondary") }}
+      <a href="{{ url_for('delete',id=id)}}" class="btn btn-danger"> Delete</a> 
+      <br /> <br />
+       </div>
+</div>
+    </div>
+  </form>
+  <br /> <br />
+</div>
+
+{% endif %} 
+
+
+{% endblock content %}
